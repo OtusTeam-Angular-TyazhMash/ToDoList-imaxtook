@@ -1,0 +1,19 @@
+вцф<div id="page">
+    <h2>Todo List</h2>
+    <app-list-item [itemList]="itemList" />
+    <span>
+        <mat-form-field subscriptSizing="dynamic">
+            <input
+                matInput [(ngModel)]="text"
+                placeholder="Add your new todo"
+                id="matInput"
+            >
+        </mat-form-field>
+        <app-button-component
+            (click)="addItem(text)"
+            title="Add task"
+            class="button button--add"
+            [disabled]="!text"
+         />
+    </span>
+</div>
