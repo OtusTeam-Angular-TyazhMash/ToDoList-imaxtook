@@ -1,0 +1,31 @@
+<ul class="todo_table">
+    <ng-container *ngIf="isLoading" id="spinner">
+        <mat-spinner diameter="150"></mat-spinner>
+    </ng-container>
+    <ng-container *ngIf="!isLoading">
+        <span id="list_block">
+            <div id="list">
+                <li
+                    [tooltip]="'Task'"
+                    *ngFor="let id of itemList.keys()"
+                    (click)="selectedItemId = id"
+                    [class.selected]="id == selectedItemId"
+                >
+                    <ng-container>
+                        {{itemList.get(id)?.text}}
+                        <app-button
+                            [tooltip]="'Delete'"
+                            (click)="deleteItem(id)"
+                            title="Delete"
+                            class="button button--delete"
+                        />
+                    </ng-container>
+                </li>
+            </div>
+            <div
+                id="description"
+                [textContent]="currentDescription()"
+            ></div>
+        </span>
+    </ng-container>
+</ul>
