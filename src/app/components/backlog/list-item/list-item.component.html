@@ -1,0 +1,49 @@
+<h1 (click)="data.deselect()">Todo List</h1>
+<mat-radio-group [(ngModel)]="data.filterStatus">
+    <mat-radio-button>ALL</mat-radio-button>
+    <mat-radio-button value="InProgress">InProgress</mat-radio-button>
+    <mat-radio-button value="Complete">Complete</mat-radio-button>
+</mat-radio-group>
+<ul *ngIf="data.getItemList(data.filterStatus)|async as itemList">
+    <app-spinner *ngIf="data.isLoading" id="spinner"/>
+    <ng-container *ngIf="!data.isLoading">
+        <li
+            [tooltip]="'Task'"
+            *ngFor="let item of itemList"
+            (dblclick)="data.editedId = item.id"
+            [routerLink]="[item.id]"
+            routerLinkActive="selected"
+            (keydown.esc)="data.deselect()"
+            (keydown.enter)="data.editItem(item.id, item.text)"
+        >
+            <ng-container *ngIf="data.editedId != item.id">
+                <mat-checkbox 
+                    [checked]="data.getItem(item.id)?.status === 'Complete'"
+                    (click)="data.setStatus(item.id)"
+                ></mat-checkbox>
+                <div id="task_text">
+                    {{ data.getItem(item.id)?.text }}
+                </div>
+                <app-button
+                    [tooltip]="'Delete'"
+                    (click)="data.deleteItem(item.id)"
+                    class="button button--delete"
+                >Delete</app-button>
+            </ng-container>
+            <ng-container *ngIf="data.editedId == item.id">
+                <app-button
+                    [tooltip]="'Save'"
+                    (click)="data.editItem(item.id, item.text)"
+                    class="button button--save"
+                    [disabled]="!item.text"
+                >Save</app-button>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <input
+                        matInput [(ngModel)]="item.text"
+                        placeholder="Edit your todo"
+                    >
+                </mat-form-field>
+            </ng-container>
+        </li>
+    </ng-container>
+</ul>

@@ -1,0 +1,10 @@
+<span>
+    <ul>
+        <h1 (click)="data.deselect()">TaskBoard</h1>
+        <div>
+            <li routerLinkActive="selected" routerLink="backlog">backlog</li>
+            <li routerLinkActive="selected" routerLink="board">board</li>
+        </div>
+    </ul>
+    <router-outlet></router-outlet>
+</span>
