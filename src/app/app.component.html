@@ -1,0 +1,17 @@
+<span>
+    <ul>
+        <h1 i18n (click)="data.deselect()">TaskBoard</h1>
+        <div>
+            <li i18n routerLinkActive="selected" routerLink="backlog">backlog</li>
+            <li i18n routerLinkActive="selected" routerLink="board">board</li>
+        </div>
+        <button mat-button [matMenuTriggerFor]="menu">
+            <mat-icon>language</mat-icon><span id="language" i18n>language</span>
+        </button>
+        <mat-menu #menu="matMenu">
+            <a href="{{ router.url }}" i18n mat-menu-item>english</a>
+            <a href="/ru{{ router.url }}" i18n mat-menu-item>russian</a>
+        </mat-menu>
+    </ul>
+    <router-outlet></router-outlet>
+</span>

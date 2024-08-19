@@ -1,0 +1,44 @@
+<div>
+    <h1 i18n>Board</h1>
+    <span>
+        <ul *ngIf="data.getItemList(null)|async as nullFilter">
+            <h5 i18n>All ({{ nullFilter.length }})</h5>
+            <app-spinner *ngIf="data.isLoading" id="spinner"/>
+            <ng-container *ngIf="!data.isLoading">
+                <li *ngFor="let item of nullFilter">
+                    <ng-container *ngIf="data.editedId != item.id">
+                        <div id="task_text">
+                            {{ data.getItem(item.id)?.text }}
+                        </div>
+                    </ng-container>
+                </li>
+            </ng-container>
+        </ul>
+        <ul *ngIf="data.getItemList('InProgress')|async as inProgressFilter">
+            <h5 i18n>In progress ({{ inProgressFilter.length }})</h5>
+            <app-spinner *ngIf="data.isLoading" id="spinner"/>
+            <ng-container *ngIf="!data.isLoading">
+                <li *ngFor="let item of inProgressFilter">
+                    <ng-container *ngIf="data.editedId != item.id">
+                        <div id="task_text">
+                            {{ data.getItem(item.id)?.text }}
+                        </div>
+                    </ng-container>
+                </li>
+            </ng-container>
+        </ul>
+        <ul *ngIf="data.getItemList('Complete')|async as completeFilter">
+            <h5 i18n>Complete ({{ completeFilter.length }})</h5>
+            <app-spinner *ngIf="data.isLoading" id="spinner"/>
+            <ng-container *ngIf="!data.isLoading">
+                <li *ngFor="let item of completeFilter">
+                    <ng-container *ngIf="data.editedId != item.id">
+                        <div id="task_text">
+                            {{ data.getItem(item.id)?.text }}
+                        </div>
+                    </ng-container>
+                </li>
+            </ng-container>
+        </ul>
+    </span>
+</div>

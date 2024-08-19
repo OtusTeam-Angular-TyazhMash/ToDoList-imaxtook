@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="2013842430413384651" datatype="html">
+        <source>TaskBoard</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2946988289493771337" datatype="html">
+        <source>backlog</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5520127934627226585" datatype="html">
+        <source>board</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2347724151568473592" datatype="html">
+        <source>language</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6105581491285311381" datatype="html">
+        <source>english</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3562618953459729" datatype="html">
+        <source>russian</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8814297195783961848" datatype="html">
+        <source>Todo List</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/list-item/list-item.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7440546540850433002" datatype="html">
+        <source>ALL</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/list-item/list-item.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1924797262658924195" datatype="html">
+        <source>InProgress</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/list-item/list-item.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8384225360105280028" datatype="html">
+        <source>Complete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/list-item/list-item.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/list-item/list-item.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/translations.ts</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3768927257183755959" datatype="html">
+        <source>Save</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/list-item/list-item.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/translations.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4212432732630026055" datatype="html">
+        <source>Edit your todo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/list-item/list-item.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/to-do-item-view/to-do-item-view.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="25761743931449457" datatype="html">
+        <source>Add your new todo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6649386542043268895" datatype="html">
+        <source>Add task</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/backlog/todo-create-item/todo-create-item.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/translations.ts</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="467515590191938529" datatype="html">
+        <source>Board</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/board/board.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4073447834559685449" datatype="html">
+        <source>All (<x id="INTERPOLATION" equiv-text="{{ nullFilter.length }}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/board/board.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8207856405625102744" datatype="html">
+        <source>In progress (<x id="INTERPOLATION" equiv-text="{{ inProgressFilter.length }}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/board/board.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7283848960960875187" datatype="html">
+        <source>Complete (<x id="INTERPOLATION" equiv-text="{{ completeFilter.length }}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/board/board.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8658146740168500524" datatype="html">
+        <source>Data received</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/translations.ts</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1196953586151393775" datatype="html">
+        <source>Item added</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/translations.ts</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1673766020838180509" datatype="html">
+        <source>Item deleted</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/translations.ts</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1227712079564520385" datatype="html">
+        <source>Item edited</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/translations.ts</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4578192247039196794" datatype="html">
+        <source>Task</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/locale/translations.ts</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
