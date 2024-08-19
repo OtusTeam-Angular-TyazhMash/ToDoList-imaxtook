@@ -1,0 +1,38 @@
+:host {
+    display: flex;
+    flex: 1;
+}
+h1 {
+    font-size: 1.5em;
+    margin: 0.3em 0;
+}
+h5 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+}
+li {
+    display: flex;
+    justify-content: space-between;
+    background-color: #e4ebff;
+    margin: 0 0.5em 0.5em 0;
+    padding: 0.6em;
+    border-radius: 0.6em;
+    align-items: center;
+    font-size: 1.2em;
+    gap: 0.5em;
+}
+ul {
+    padding-left: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+#spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+span {
+    border: solid 0.05em gray;
+    border-radius: 0.5em;
+    padding: 0.5em 0 0 0.5em;
+}
