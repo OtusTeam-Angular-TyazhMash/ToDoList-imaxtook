@@ -1,0 +1,88 @@
+.todo_table {
+   padding: 0;
+   font-size: 70%;
+}
+#list {
+   flex: 1;
+}
+#description {
+   width: 30%;
+   margin: 0.7em 0 0.7em 0;
+   padding: 0.3em;
+   font-size: 1em;
+   overflow-wrap: break-word;
+}
+#page {
+   margin: 4%;
+   font-size: 1.5em;
+}
+h2 {
+   margin-bottom: 1em;
+}
+li {
+   display: flex;
+   justify-content: space-between;
+   background-color: #e4ebff;
+   margin-top: 0.5em;
+   margin-bottom: 0.5em;
+   padding: 0 0.6em 0 0.6em;
+   align-items: center;
+   font-size: 1.5em;
+   gap: 0.5em;
+}
+#task_text {
+   flex: 1;
+}
+li.selected {
+   background-color: rgb(153, 177, 245);
+}
+ul {
+   margin-top: 0;
+   margin-bottom: 1em;
+}
+.button {
+   font-size: 100%;
+   border-radius: 5px;
+   color: white;
+   border: none;
+   padding: 0.5em;
+}
+.button--save {
+   background-color: blue;
+}
+.button--save:disabled {
+   opacity: 0.5;
+}
+.button--delete {
+   background-color: red;
+}
+.button--add {
+   background-color: green;
+}
+.button--add:disabled {
+   opacity: 0.5;
+}
+span {
+   display: flex;
+   justify-content: space-between;
+   margin-top: 1em;
+}
+span#task_block {
+   align-items: center;
+   gap: 0.5em;
+}
+span#list_block {
+   align-items: start;
+}
+mat-form-field {
+   flex: 1;
+   font-size: 1em !important;
+}
+#spinner {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+mat-radio-button {
+   padding-right: 1em;
+}

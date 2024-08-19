@@ -1,0 +1,22 @@
+{
+  "tasks": [
+    {
+      "text": "Buy a new gaming laptop",
+      "description": "Description 1",
+      "status": "InProgress",
+      "id": 1
+    },
+    {
+      "text": "Complete previous task",
+      "description": "Description 2",
+      "status": "InProgress",
+      "id": 2
+    },
+    {
+      "text": "Create some angular app",
+      "description": "Description 3",
+      "status": "InProgress",
+      "id": 3
+    }
+  ]
+}

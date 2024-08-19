@@ -1,0 +1,16 @@
+.button {
+    font-size: 100%;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    padding: 0.1em;
+}
+.button--delete {
+    background-color: red;
+}
+.button--add {
+    background-color: green;
+}
+.button--add:disabled {
+    opacity: 0.5;
+}

@@ -1,0 +1,17 @@
+:host {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.toast {
+    align-items: center;
+    display: flex;
+    gap: 0.5em;
+    background-color: gray;
+    color: white;
+    margin: 0.5em;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    min-width: 240px;
+}
