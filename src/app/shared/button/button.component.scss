@@ -1,0 +1,22 @@
+.button {
+    font-size: 115%;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    padding: 0.5em;
+ }
+ .button--save {
+    background-color: blue;
+ }
+ .button--save:disabled {
+    opacity: 0.5;
+ }
+ .button--delete {
+    background-color: red;
+ }
+ .button--add {
+    background-color: green;
+ }
+ .button--add:disabled {
+    opacity: 0.5;
+ }

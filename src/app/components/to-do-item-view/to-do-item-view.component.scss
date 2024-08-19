@@ -1,0 +1,11 @@
+:host {
+    display: flex;
+    flex-direction: column;
+}
+div {
+    border: solid 0.05em;
+    flex: 1;
+    border-radius: 0.2em;
+    margin-bottom: 1em;
+    padding: 0.5em;
+}
