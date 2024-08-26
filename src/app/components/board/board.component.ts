@@ -7,5 +7,5 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent {
-  constructor(protected dataService: DataService) {}
+  constructor(protected data: DataService) {}
 }

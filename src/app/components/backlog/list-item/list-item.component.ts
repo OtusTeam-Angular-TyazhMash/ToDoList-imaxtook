@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../../services/data.service';
+import { translations } from 'src/locale/translations';
 
 @Component({
   selector: 'app-list-item',
@@ -8,5 +9,6 @@ import { DataService } from '../../services/data.service';
 })
 
 export class ListItemComponent {
-  constructor(protected dataService: DataService) {}
+  readonly translations = translations;
+  constructor(protected data: DataService) {}
 }

@@ -1,46 +1,40 @@
 <div>
-    <h1>Board</h1>
+    <h1 i18n>Board</h1>
     <span>
-        <ul #ul1>
-            <h5>All ({{ dataService.toDoFilter(null).length }})</h5>
-            <app-spinner *ngIf="dataService.isLoading" id="spinner"/>
-            <ng-container *ngIf="!dataService.isLoading">
-                <li
-                    *ngFor="let item of dataService.toDoFilter(null)"
-                >
-                    <ng-container *ngIf="dataService.editedId != item.id">
+        <ul *ngIf="data.getItemList(null)|async as nullFilter">
+            <h5 i18n>All ({{ nullFilter.length }})</h5>
+            <app-spinner *ngIf="data.isLoading" id="spinner"/>
+            <ng-container *ngIf="!data.isLoading">
+                <li *ngFor="let item of nullFilter">
+                    <ng-container *ngIf="data.editedId != item.id">
                         <div id="task_text">
-                            {{dataService.getItem(item.id)?.text}}
+                            {{ data.getItem(item.id)?.text }}
                         </div>
                     </ng-container>
                 </li>
             </ng-container>
         </ul>
-        <ul #ul2>
-            <h5>In progress ({{ dataService.toDoFilter('InProgress').length }})</h5>
-            <app-spinner *ngIf="dataService.isLoading" id="spinner"/>
-            <ng-container *ngIf="!dataService.isLoading">
-                <li
-                    *ngFor="let item of dataService.toDoFilter('InProgress')"
-                >
-                    <ng-container *ngIf="dataService.editedId != item.id">
+        <ul *ngIf="data.getItemList('InProgress')|async as inProgressFilter">
+            <h5 i18n>In progress ({{ inProgressFilter.length }})</h5>
+            <app-spinner *ngIf="data.isLoading" id="spinner"/>
+            <ng-container *ngIf="!data.isLoading">
+                <li *ngFor="let item of inProgressFilter">
+                    <ng-container *ngIf="data.editedId != item.id">
                         <div id="task_text">
-                            {{dataService.getItem(item.id)?.text}}
+                            {{ data.getItem(item.id)?.text }}
                         </div>
                     </ng-container>
                 </li>
             </ng-container>
         </ul>
-        <ul #ul3>
-            <h5>Complete ({{ dataService.toDoFilter('Complete').length }})</h5>
-            <app-spinner *ngIf="dataService.isLoading" id="spinner"/>
-            <ng-container *ngIf="!dataService.isLoading">
-                <li
-                    *ngFor="let item of dataService.toDoFilter('Complete')"
-                >
-                    <ng-container *ngIf="dataService.editedId != item.id">
+        <ul *ngIf="data.getItemList('Complete')|async as completeFilter">
+            <h5 i18n>Complete ({{ completeFilter.length }})</h5>
+            <app-spinner *ngIf="data.isLoading" id="spinner"/>
+            <ng-container *ngIf="!data.isLoading">
+                <li *ngFor="let item of completeFilter">
+                    <ng-container *ngIf="data.editedId != item.id">
                         <div id="task_text">
-                            {{dataService.getItem(item.id)?.text}}
+                            {{ data.getItem(item.id)?.text }}
                         </div>
                     </ng-container>
                 </li>

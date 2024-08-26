@@ -7,6 +7,6 @@ import { DataService } from '../../services/data.service';
   styleUrls: ['./backlog.component.scss']
 })
 
-export class ToDoListComponent {
+export class BacklogComponent {
   constructor(protected dataService: DataService) {}
 }
