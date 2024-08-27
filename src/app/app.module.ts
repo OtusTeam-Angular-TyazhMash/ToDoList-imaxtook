@@ -1,42 +1,37 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
+
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 
 import { AppComponent } from './app.component';
-import { ToDoListComponent } from './components/backlog/backlog.component';
-import { ListItemComponent } from './components/list-item/list-item.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppRoutesModule } from './app.routes';
 import { SharedModule } from './shared/shared.module';
-import { TodoCreateItemComponent } from './components/todo-create-item/todo-create-item.component';
-import { HttpClientModule } from '@angular/common/http';
-import { AppRoutesComponent } from './app.routes';
-import { ToDoItemViewComponent } from './components/to-do-item-view/to-do-item-view.component';
-import { BoardComponent } from './components/board/board.component';
+import { BacklogModule } from './components/backlog/backlog.module';
+import { BoardModule } from './components/board/board.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    ToDoListComponent,
-    ListItemComponent,
-    TodoCreateItemComponent,
-    ToDoItemViewComponent,
-    BoardComponent
+    AppComponent
   ],
   imports: [
-    BrowserModule, 
-    FormsModule, 
+    BrowserModule,
+    FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     MatInputModule,
     MatProgressSpinnerModule,
     MatCheckboxModule,
     MatRadioModule,
     SharedModule,
-    AppRoutesComponent
+    BacklogModule,
+    BoardModule,
+    AppRoutesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

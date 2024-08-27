@@ -1,23 +1,28 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ToDoListComponent } from './components/backlog/backlog.component';
-import { ToDoItemViewComponent } from './components/backlog/to-do-item-view/to-do-item-view.component';
-import { BoardComponent } from './components/board/board.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'backlog', pathMatch: 'full' },
-  { path: 'board', component: BoardComponent },
   {
-    path: 'backlog', component: ToDoListComponent,
-    children: [
-      { path: ':id', component: ToDoItemViewComponent },
-    ],
+    path: 'backlog',
+    loadChildren: () => import('./components/backlog/backlog.module').then(m => m.BacklogModule)
   },
-  { path: '**', redirectTo: '' },
+  {
+    path: 'board',
+    loadChildren: () => import('./components/board/board.module').then(m => m.BoardModule)
+  },
+  {
+    path: '',
+    redirectTo: '/backlog',
+    pathMatch: 'full'
+  },
+  {
+    path: '**',
+    redirectTo: '/backlog'
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutesModule { }
