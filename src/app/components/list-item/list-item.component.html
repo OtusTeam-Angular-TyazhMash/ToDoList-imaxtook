@@ -1,0 +1,49 @@
+<h1 i18n (click)="data.deselect()">Todo List</h1>
+<mat-radio-group [(ngModel)]="data.toDoFilter">
+    <mat-radio-button i18n>ALL</mat-radio-button>
+    <mat-radio-button i18n value="InProgress">InProgress</mat-radio-button>
+    <mat-radio-button i18n value="Complete">Complete</mat-radio-button>
+</mat-radio-group>
+<ul *ngIf="data.getItemList(data.toDoFilter)|async as itemList">
+    <app-spinner *ngIf="data.loading$" id="spinner"/>
+    <ng-container *ngIf="!data.loading$">
+        <li
+            [tooltip]="translations.task"
+            *ngFor="let item of itemList"
+            (dblclick)="data.loading$ = item.id"
+            [routerLink]="[item.id]"
+            routerLinkActive="selected"
+            (keydown.esc)="data.deselect()"
+            (keydown.enter)="data.editItem(item.id, item.text)"
+        >
+            <ng-container *ngIf="data.editedId != item.id">
+                <mat-checkbox 
+                    [checked]="data.getItem(item.id)?.status === 'Complete'"
+                    (click)="data.setStatus(item.id)"
+                ></mat-checkbox>
+                <div id="task_text">
+                    {{ data.getItem(item.id)?.text }}
+                </div>
+                <app-button i18n
+                    [tooltip]="translations.delete"
+                    (click)="data.deleteItem(item.id)"
+                    class="button button--delete"
+                >Delete</app-button>
+            </ng-container>
+            <ng-container *ngIf="data.editedId == item.id">
+                <app-button i18n
+                    [tooltip]="translations.save"
+                    (click)="data.editItem(item.id, item.text)"
+                    class="button button--save"
+                    [disabled]="!item.text"
+                >Save</app-button>
+                <mat-form-field appearance="outline" subscriptSizing="dynamic">
+                    <input i18n i18n-placeholder
+                        matInput [(ngModel)]="item.text"
+                        placeholder="Edit your todo"
+                    >
+                </mat-form-field>
+            </ng-container>
+        </li>
+    </ng-container>
+</ul>

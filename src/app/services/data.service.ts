@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { ToastService } from 'src/app/services/toast.service';
+import { HttpClient } from "@angular/common/http";
 import { Router } from '@angular/router';
-import { ObservablesService } from './observables.service';
-import { BehaviorSubject, delay, map, take } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 export class Status {
   static ALL = null;
@@ -23,106 +24,138 @@ export class Item {
 export class DataService {
   private url: string = 'http://localhost:3000/tasks';
   private itemList$ = new BehaviorSubject<Item[]>([]);
-  text: string = '';
-  description: string = '';
-  isLoading: boolean = true;
-  editedId!: number;
-  filterStatus: Status|null = Status.ALL;
-
+  private isLoading$ = new BehaviorSubject<boolean>(true);
+  
   constructor(
     private toastService: ToastService,
-    private router: Router,
-    private observables: ObservablesService
+    private httpClient: HttpClient,
+    private router: Router
   ) {
-    this.loadItemList();
+    this.loadItemListFromServer().subscribe();
+  }
+
+  get items$(): Observable<Item[]> {
+    return this.itemList$.asObservable();
+  }
+
+  get loading$(): Observable<boolean> {
+    return this.isLoading$.asObservable();
   }
 
   deselect() {
     this.router.navigate(['']);
-    this.editedId = -1;
   }
 
-  getItem(id: number) {
-    return this.itemList$.value.find(item => item.id === id);
-  }
-
-  getItemList(filterStatus: Status|null) {
-    if (filterStatus == null) return this.itemList$;
-
-    return this.itemList$.pipe(
-      map(items => items.filter(item => item.status === filterStatus))
+  getItem(id: number): Observable<Item | undefined> {
+    return this.items$.pipe(
+      map(items => items.find(item => item.id === id))
     );
   }
 
-  loadItemList() {
-    this.isLoading = true;
+  toDoFilter(filterStatus: Status | null): Observable<Item[]> {
+    return this.items$.pipe(
+      map(items => {
+        if (filterStatus == null) return items;
+        return items.filter(item => item.status === filterStatus);
+      })
+    );
+  }
 
-    this.observables.httpGet<Item[]>(this.url)
-    .subscribe({
-      next: items => {
+  loadItemListFromServer(): Observable<Item[]> {
+    this.isLoading$.next(true);
+    return this.httpClient.get<Item[]>(this.url).pipe(
+      tap(items => {
         this.itemList$.next(items);
-        this.itemList$.pipe(
-          delay(200), take(1)
-        ).subscribe(() => {
-          this.isLoading = false;
-          this.toastService.showToast("Data received");
-        });
-      }
-    });
+        this.isLoading$.next(false);
+        this.toastService.showToast("Data received");
+      }),
+      catchError(error => {
+        this.isLoading$.next(false);
+        this.toastService.showToast("Failed to fetch data");
+        throw error;
+      })
+    );
   }
 
-  addItem(text: string, addDescription: string) {
-    if (!text) return;
-
-    this.observables.httpPost(this.url,
-      {
-        text: text,
-        description: addDescription,
-        status: Status.InProgress
-      }
-    ).subscribe({
-      next: (item) => {
-        this.itemList$.next([...this.itemList$.value, item as Item]);
-        this.text = '';
-        this.description = '';
-        this.toastService.showToast("Item added");
-      }
-    });
-  }
-
-  deleteItem(id: number) {
-    this.observables.httpDelete(this.url, id)
-    .subscribe({
-      next: () => {
-        this.itemList$.next(this.itemList$.value.filter(it => it.id !== id));
-        this.toastService.showToast("Item deleted")
-      } 
-    });
-  }
-
-  editItem(id: number, text: string) {
-    if (!text) return;
-
-    this.observables.httpPatch(this.url, id, {text: text})
-    .subscribe({
-      next: () => {
-        this.getItem(id)!.text = text;
-        this.editedId = -1;
-        this.toastService.showToast("Item edited")
-      }
-    });
-  }
-
-  setStatus(id: number) {
-    var status = Status.InProgress;
-    if (this.getItem(id)!.status === Status.InProgress) {
-      status = Status.Complete;
+  addItem(text: string, addDescription: string): Observable<Item> {
+    if (!text) {
+      return new Observable<Item>(); // Возвращаем пустой Observable, если нет текста
     }
-    this.observables.httpPatch(this.url, id, {status: status})
-    .subscribe({
-      next: () => {
-        this.getItem(id)!.status = status;
-      }
-    });
+
+    return this.httpClient.post<Item>(this.url, {
+      text: text, 
+      description: addDescription, 
+      status: Status.InProgress
+    }).pipe(
+      tap(item => {
+        this.itemList$.next([...this.itemList$.value, item]);
+        this.toastService.showToast("Item added");
+      }),
+      catchError(error => {
+        this.toastService.showToast("Failed to add item");
+        throw error;
+      })
+    );
+  }
+
+  deleteItem(id: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.url}/${id}`).pipe(
+      tap(() => {
+        this.itemList$.next(this.itemList$.value.filter(it => it.id !== id));
+        this.toastService.showToast("Item deleted");
+      }),
+      catchError(error => {
+        this.toastService.showToast("Failed to delete item");
+        throw error;
+      })
+    );
+  }
+
+  editItem(id: number, text: string): Observable<void> {
+    if (!text) {
+      return new Observable<void>(); // Возвращаем пустой Observable, если нет текста
+    }
+
+    return this.httpClient.patch<void>(`${this.url}/${id}`, { text }).pipe(
+      tap(() => {
+        const items = this.itemList$.value.map(item => {
+          if (item.id === id) {
+            return { ...item, text };
+          }
+          return item;
+        });
+        this.itemList$.next(items);
+        this.toastService.showToast("Item edited");
+      }),
+      catchError(error => {
+        this.toastService.showToast("Failed to edit item");
+        throw error;
+      })
+    );
+  }
+
+  setStatus(id: number): Observable<void> {
+    const item = this.itemList$.value.find(item => item.id === id);
+    if (!item) {
+      return new Observable<void>(); // Возвращаем пустой Observable, если item не найден
+    }
+
+    const newStatus = item.status === Status.InProgress ? Status.Complete : Status.InProgress;
+
+    return this.httpClient.patch<void>(`${this.url}/${id}`, { status: newStatus }).pipe(
+      tap(() => {
+        const items = this.itemList$.value.map(it => {
+          if (it.id === id) {
+            return { ...it, status: newStatus };
+          }
+          return it;
+        });
+        this.itemList$.next(items);
+      }),
+      catchError(error => {
+        this.toastService.showToast("Failed to update status");
+        throw error;
+      })
+    );
   }
 }
